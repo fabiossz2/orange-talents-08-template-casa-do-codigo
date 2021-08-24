@@ -30,7 +30,7 @@ public class RestExceptionHandler {
         fieldErrors.forEach(errors -> {
             String messageContext = messageSource.getMessage(errors, LocaleContextHolder.getLocale());
             StandardError error = new StandardError(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),
-                    HttpStatus.BAD_REQUEST.toString(), messageContext);
+                    HttpStatus.BAD_REQUEST.toString(), errors.getField(), messageContext);
             listStandardError.add(error);
         });
         return listStandardError;
