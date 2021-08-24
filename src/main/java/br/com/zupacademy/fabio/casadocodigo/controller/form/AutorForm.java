@@ -1,6 +1,7 @@
 package br.com.zupacademy.fabio.casadocodigo.controller.form;
 
 import br.com.zupacademy.fabio.casadocodigo.entity.Autor;
+import br.com.zupacademy.fabio.casadocodigo.validator.UniqueValue;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +14,7 @@ public class AutorForm {
 
     @Email
     @NotBlank
+    @UniqueValue(domainClass = Autor.class, fieldName = "email")
     private String email;
 
     @NotBlank

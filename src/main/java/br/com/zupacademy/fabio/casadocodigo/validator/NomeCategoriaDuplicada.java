@@ -1,6 +1,5 @@
 package br.com.zupacademy.fabio.casadocodigo.validator;
 
-import br.com.zupacademy.fabio.casadocodigo.controller.dto.CategoriaDto;
 import br.com.zupacademy.fabio.casadocodigo.controller.form.CategoriaForm;
 import br.com.zupacademy.fabio.casadocodigo.entity.Categoria;
 import br.com.zupacademy.fabio.casadocodigo.repository.CategoryRepository;

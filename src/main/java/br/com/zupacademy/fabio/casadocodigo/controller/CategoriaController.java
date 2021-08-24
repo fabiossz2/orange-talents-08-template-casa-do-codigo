@@ -4,10 +4,11 @@ import br.com.zupacademy.fabio.casadocodigo.controller.dto.CategoriaDto;
 import br.com.zupacademy.fabio.casadocodigo.controller.form.CategoriaForm;
 import br.com.zupacademy.fabio.casadocodigo.entity.Categoria;
 import br.com.zupacademy.fabio.casadocodigo.repository.CategoryRepository;
-import br.com.zupacademy.fabio.casadocodigo.validator.NomeCategoriaDuplicada;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -20,11 +21,6 @@ public class CategoriaController {
 
     public CategoriaController(final CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-    }
-
-    @InitBinder("categoriaForm")
-    public void init(WebDataBinder dataBinder) {
-        dataBinder.addValidators(new NomeCategoriaDuplicada(categoryRepository));
     }
 
     @PostMapping

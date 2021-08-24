@@ -6,16 +6,13 @@ public class StandardError {
     private LocalDateTime timeError;
     private Integer statusCode;
     private String status;
-    private String field;
-    private String message;
+    private String details;
 
-
-    public StandardError(LocalDateTime timeError, Integer statusCode, String status, String field, String message) {
+    public StandardError(LocalDateTime timeError, Integer statusCode, String status, String details) {
         this.timeError = timeError;
         this.statusCode = statusCode;
         this.status = status;
-        this.field = field;
-        this.message = message;
+        this.details = details;
     }
 
     public LocalDateTime getTimeError() {
@@ -30,11 +27,7 @@ public class StandardError {
         return status;
     }
 
-    public String getField() {
-        return field;
-    }
-
-    public String getMessage() {
-        return message;
+    public String getDetails() {
+        return details;
     }
 }

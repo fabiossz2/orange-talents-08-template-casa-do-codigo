@@ -4,10 +4,11 @@ import br.com.zupacademy.fabio.casadocodigo.controller.dto.AutorDto;
 import br.com.zupacademy.fabio.casadocodigo.controller.form.AutorForm;
 import br.com.zupacademy.fabio.casadocodigo.entity.Autor;
 import br.com.zupacademy.fabio.casadocodigo.repository.AutorRepository;
-import br.com.zupacademy.fabio.casadocodigo.validator.EmailAutorDuplicado;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -22,10 +23,10 @@ public class AutorController {
         this.autorRepository = autorRepository;
     }
 
-    @InitBinder("autorForm")
-    public void init(WebDataBinder dataBinder) {
-        dataBinder.addValidators(new EmailAutorDuplicado(autorRepository));
-    }
+//    @InitBinder("autorForm")
+//    public void init(WebDataBinder dataBinder) {
+//        dataBinder.addValidators(new EmailAutorDuplicado(autorRepository));
+//    }
 
     @PostMapping
     @Transactional

@@ -30,7 +30,7 @@ public class Autor {
     private LocalDateTime dataCadastro = LocalDateTime.now();
 
     @Deprecated
-    public Autor() {
+    protected Autor() {
     }
 
     public Autor(@NotBlank String nome, @Email @NotBlank String email, @NotBlank @Size(max = 400) String descricao) {
