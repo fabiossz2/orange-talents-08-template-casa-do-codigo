@@ -1,5 +1,6 @@
 package br.com.zupacademy.fabio.casadocodigo.controller;
 
+import br.com.zupacademy.fabio.casadocodigo.controller.dto.DetalheLivroDto;
 import br.com.zupacademy.fabio.casadocodigo.controller.dto.ItemListaLivro;
 import br.com.zupacademy.fabio.casadocodigo.controller.dto.LivroDto;
 import br.com.zupacademy.fabio.casadocodigo.controller.form.LivroForm;
@@ -11,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,4 +40,10 @@ public class LivroController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable @NotBlank Long id) {
+        Livro livro = this.entityManager.find(Livro.class, id);
+        if (livro == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(new DetalheLivroDto(livro));
+    }
 }
