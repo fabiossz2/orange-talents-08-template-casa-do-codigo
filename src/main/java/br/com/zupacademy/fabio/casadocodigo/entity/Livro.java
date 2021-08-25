@@ -1,6 +1,7 @@
 package br.com.zupacademy.fabio.casadocodigo.entity;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,9 +20,11 @@ public class Livro {
     @Size(max = 500)
     private String resumo;
 
+    @NotBlank
     private String sumario;
 
     @DecimalMin("20.00")
+    @NotNull
     private BigDecimal preco;
 
     @NotNull
@@ -32,24 +35,27 @@ public class Livro {
     private String isbn;
 
     @Future
+    @NotNull
     private LocalDate dataPublicacao;
 
     @ManyToOne
     @NotNull
+    @Valid
     private Categoria categoria;
 
     @ManyToOne
     @NotNull
+    @Valid
     private Autor autor;
 
     @Deprecated
     protected Livro() {
     }
 
-    public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, String sumario,
-                 @DecimalMin("20.00") BigDecimal preco, @NotNull @Min(100) Integer numeroPaginas,
-                 @NotBlank String isbn, @Future LocalDate dataPublicacao, @NotNull Categoria categoria,
-                 @NotNull Autor autor) {
+    public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotBlank String sumario,
+                 @NotNull @DecimalMin("20.00") BigDecimal preco, @NotNull @Min(100) Integer numeroPaginas,
+                 @NotBlank String isbn, @Future @NotNull LocalDate dataPublicacao, @NotNull @Valid Categoria categoria,
+                 @NotNull @Valid Autor autor) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;

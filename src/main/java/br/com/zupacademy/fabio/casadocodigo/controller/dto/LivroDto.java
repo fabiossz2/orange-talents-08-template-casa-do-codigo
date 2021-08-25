@@ -2,6 +2,7 @@ package br.com.zupacademy.fabio.casadocodigo.controller.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class LivroDto {
 
@@ -53,8 +54,8 @@ public class LivroDto {
         return isbn;
     }
 
-    public LocalDate getDataPublicacao() {
-        return dataPublicacao;
+    public String getDataPublicacao() {
+        return dataPublicacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public String getNomeCategoria() {
