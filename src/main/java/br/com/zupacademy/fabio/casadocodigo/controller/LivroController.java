@@ -1,18 +1,18 @@
 package br.com.zupacademy.fabio.casadocodigo.controller;
 
+import br.com.zupacademy.fabio.casadocodigo.controller.dto.ItemListaLivro;
 import br.com.zupacademy.fabio.casadocodigo.controller.dto.LivroDto;
 import br.com.zupacademy.fabio.casadocodigo.controller.form.LivroForm;
 import br.com.zupacademy.fabio.casadocodigo.entity.Livro;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/livros")
@@ -29,4 +29,13 @@ public class LivroController {
         LivroDto livroDto = livroForm.converterToDto();
         return ResponseEntity.ok(livroDto);
     }
+
+    @GetMapping
+    public List<ItemListaLivro> lista() {
+        final String jpql = "SELECT l FROM Livro l";
+        List<Livro> livros = this.entityManager.createQuery(jpql, Livro.class).getResultList();
+        return livros.stream().map(livro -> new ItemListaLivro(livro.getId(), livro.getTitulo()))
+                .collect(Collectors.toList());
+    }
+
 }
