@@ -23,11 +23,6 @@ public class AutorController {
         this.autorRepository = autorRepository;
     }
 
-//    @InitBinder("autorForm")
-//    public void init(WebDataBinder dataBinder) {
-//        dataBinder.addValidators(new EmailAutorDuplicado(autorRepository));
-//    }
-
     @PostMapping
     @Transactional
     public ResponseEntity<AutorDto> cadastrar(@RequestBody @Valid AutorForm autorForm) {
